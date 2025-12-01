@@ -15,8 +15,6 @@ class Day1
       direction = instructions[0]
       steps = instructions[1..].join.to_i
 
-      puts "Initial Current Number: #{@curr_number}" 
-
       if direction == "L"
         @curr_number -= steps
         @curr_number += 100 while @curr_number < MIN_NUMBER
