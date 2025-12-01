@@ -16,37 +16,31 @@ class Day1
       steps = instructions[1..].join.to_i
 
       starting_number = @curr_number
+      reached_0 += (steps / 100).to_i
+      has_rounds = false
 
       if direction == "L"
-        reached_0 += (steps / 100).to_i
         @curr_number -= steps % 100
-        has_rounds = false
 
         while @curr_number < MIN_NUMBER do 
           @curr_number += 100 
           reached_0 += 1
           has_rounds = true
         end
-
-        reached_0 -= 1 if starting_number == MIN_NUMBER && has_rounds
-        reached_0 += 1 if @curr_number == MIN_NUMBER && !has_rounds
       end
 
       if direction == "R"
-        reached_0 += (steps / 100).to_i
         @curr_number += steps % 100
-
-        has_rounds = false
 
         while @curr_number > MAX_NUMBER do
           @curr_number -= 100 
           reached_0 += 1
           has_rounds = true
         end 
-
-        reached_0 -= 1 if starting_number == MIN_NUMBER && has_rounds
-        reached_0 += 1 if @curr_number == MIN_NUMBER && !has_rounds
       end
+
+      reached_0 -= 1 if starting_number == MIN_NUMBER && has_rounds
+      reached_0 += 1 if @curr_number == MIN_NUMBER && !has_rounds
     end
     reached_0
   end 
